@@ -1,1 +1,3 @@
 # Minecraft-code
+
+## Fireplace
