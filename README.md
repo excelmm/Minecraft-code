@@ -31,15 +31,15 @@ Tick 8:
   
 ## Escape Room entry
 - Repeat - execute if score mazeDone mazeDone matches 5 run setblock ~ ~3 ~ minecraft:lever[facing=east]
-  - Chain conditional - scoreboard players set mazeDone mazeDone 0
+  - Chain conditional - scoreboard players set mazeDone mazeDone 0  
+- Repeat - execute as @p[distance=..4,scores={mazeDone=0}] if entity @s run scoreboard players add @s mazeDone 1
+  - Chain conditional - scoreboard players add mazeDone mazeDone 1
 
 ## Fireplace
 - For the matches (to put in chest): give @p minecraft:flint_and_steel{display:{Name:'{"text":"Match","color":"gold","bold":true}'}}
 - Repeat - execute positioned ~-2 ~4 ~1 if entity @e[nbt={Item:{id:"minecraft:ice"}},distance=..2] run kill @e[nbt={Item:{id:"minecraft:ice"}}]
   - Chain conditional - execute positioned ~-2 ~3 ~3 run summon minecraft:item ~ ~ ~ {Item:{id:"minecraft:fishing_rod",Count:5,tag:{Enchantments:[{id:lure,lvl:3}]}}}
-  
-- Repeat - execute as @p[distance=..4,scores={mazeDone=0}] if entity @s run scoreboard players add @s mazeDone 1
-  - Chain conditional - scoreboard players add mazeDone mazeDone 1
+
   
 ## Chest at the end of parkour
 - Fill with:
