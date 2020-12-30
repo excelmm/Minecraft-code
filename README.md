@@ -15,13 +15,13 @@
 - Tick 5:
   - title @a[gamemode=spectator] title {"text":"Help your friends!", "italic":true,"color":"gold"}
   - title @a[gamemode=spectator] title {"text":"Finish the maze!", "italic":true,"color":"gold"}
-Tick 7:
+- Tick 7:
   - scoreboard players set mazeDone mazeDone 0
   - scoreboard players set @a mazeDone 0
   - execute as @a at @s run spawnpoint @s ~ ~ ~
   - clone ~-10 ~-16 ~-6 ~5 ~-16 ~-6 ~-10 ~-12 ~-6 
   - setblock ~-50 ~-13 ~115 minecraft:netherrack
-Tick 8:
+- Tick 8:
   - execute positioned ~-6 ~-12 ~-11 run tp @a[team=teamB] ~-5 ~ ~18 (tp to mazes)
   - execute positioned ~-6 ~-12 ~-11 run tp @a[team=teamA] ~-5 ~ ~   (tp to mazes)
   - setblock ~-40 ~-11 ~-5 air (lever)
