@@ -88,6 +88,9 @@
 - give replaceitem entity @a[tag=!admin,distance=..6] armor.chest minecraft:iron_chestplate
   - Chain replaceitem entity @a[tag=!admin,distance=..6] armor.legs minecraft:iron_leggings
   - Chain effect give @a[tag=!admin,distance=..7] minecraft:regeneration 10000 5
+  
+## Final room
+- Player detection: execute if entity @a[distance=..5,tag=!admin] run title @a title {"text":"Lights please!","color":"gold","bold":true,"italic":true}
 
 ## Make armor stands invulnerable
 - data merge entity @e[type=minecraft:armor_stand,limit=1,sort=nearest] {Invulnerable:1b,DisabledSlots:2096896}
