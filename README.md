@@ -43,6 +43,9 @@
   - Chain conditional - scoreboard players set mazeDone1 mazeDone 0   **Game dependent**
 - Repeat - execute as @p[distance=..4,scores={mazeDone=0}] if entity @s run scoreboard players add @s mazeDone 1
   - Chain conditional - scoreboard players add mazeDone1 mazeDone 1 **Game dependent**
+  
+## Floating text
+- /summon armor_stand ~ ~2 ~ {Invisible:1b,Invulnerable:1b,NoGravity:1b,Marker:1b,CustomName:"{\"text\":\"Whereever I face, my sword shall point.\",\"color\":\"gold\",\"bold\":\"true\",\"italic\":true}",CustomNameVisible:1b}
 
 ## Puzzle 1 - Chest at the end of parkour
 - Fill with:
@@ -53,7 +56,7 @@
   - Chain conditional - title @a title {"text":"Puzzle 1 complete!", "color":"green", "bold":true,"italic":true}
 
 ## Puzzle 2 - Fireplace
-- For the matches (to put in chest): give @p minecraft:flint_and_steel{display:{Name:'{"text":"Match","color":"gold","bold":true}'}}
+- For the matches (to put in chest): give @p minecraft:flint_and_steel{display:{Name:'{"text":"Match","color":"gold","bold":true}'},CanPlaceOn:["netherrack"]}
 - Repeat - execute positioned ~-2 ~4 ~1 if entity @e[nbt={Item:{id:"minecraft:ice"}},distance=..2] run kill @e[nbt={Item:{id:"minecraft:ice"}}]
   - Chain conditional - execute positioned ~-2 ~3 ~3 run summon minecraft:item ~ ~ ~ {Item:{id:"minecraft:fishing_rod",Count:5,tag:{display:{Lore:['{"text":"Share with your friends!"}']},Enchantments:[{id:lure,lvl:3}]}}}
   - title @a[tag=game1] subtitle {"text":"Good job!"} **Game dependent**
@@ -88,6 +91,12 @@
 - give replaceitem entity @a[tag=!admin,distance=..6] armor.chest minecraft:iron_chestplate
   - Chain replaceitem entity @a[tag=!admin,distance=..6] armor.legs minecraft:iron_leggings
   - Chain effect give @a[tag=!admin,distance=..7] minecraft:regeneration 10000 5
+  
+## Wither Slain
+- Repeat - execute if entity @e[distance=..100,tag=monster] run setblock ~ ~-1 ~ redstone_block
+- Repeat - execute unless entity @e[distance=..100,tag=monster] run setblock ~ ~1 ~ air
+  - Chain conditional - title @a[tag=game1] subtitle "Congratulations! You're almost done"
+  - Chain conditional - title @a[tag=game1] title {"text":"The wither is dead","color":"dark_red","bold":true,"italic":true}
   
 ## Final room
 - Player detection: execute if entity @a[distance=..5,tag=!admin] run title @a[tag=game1] title {"text":"Lights please!","color":"gold","bold":true,"italic":true} **Game dependent**
