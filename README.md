@@ -4,7 +4,7 @@
 - execute if entity @e[distance=..2, tag=!admin] run setblock ~ ~2 ~2 minecraft:red_nether_brick_wall
 - execute positioned ~ ~ ~1 run fill ~2 ~2 ~2 ~-2 ~2 ~-2 minecraft:prismarine_wall replace minecraft:red_nether_brick_wall
 - execute positioned ~ ~ ~2 as @e[distance=..2, tag=!admin] run tag @s add removeTag
-- execute positioned ~ ~ ~3 as @e[distance=..2, tag=!admin] run tag @s add game1
+- execute positioned ~ ~ ~3 as @e[distance=..2, tag=!admin] run tag @s add game1 **Game dependent**
 
 ## Start game
 - Tick 0: 
