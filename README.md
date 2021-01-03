@@ -11,6 +11,9 @@
   - team add mazeA1 **Game dependent**
 - Tick 1: 
   - team add mazeB1 **Game dependent**
+  - team leave @a[tag=game1] **Game dependent**
+  - clear @a[tag=game1] **Game dependent**
+  - scoreboard objectives add players dummy
 - Tick 2:
   - execute positioned ~-6 ~-12 ~-11 as @a[dx=17,dy=8,dz=22,limit=2] run team join mazeA1 @s **Game dependent**
 - Tick 3:
@@ -27,12 +30,14 @@
   - execute as @a[tag=game1] at @s run spawnpoint @s ~ ~ ~ **Game dependent**
   - clone ~-10 ~-16 ~-6 ~5 ~-16 ~-6 ~-10 ~-12 ~-6 
   - setblock ~-50 ~-13 ~115 minecraft:netherrack
+  - scoreboard players set players1 players 0 **Game dependent**
 - Tick 8:
   - execute positioned ~-6 ~-12 ~-11 run tp @a[team=teamB1] ~-5 ~ ~18 (tp to mazes) **Game dependent**
   - execute positioned ~-6 ~-12 ~-11 run tp @a[team=teamA1] ~-5 ~ ~   (tp to mazes) **Game dependent**
   - setblock ~-40 ~-11 ~-5 air (lever)
   - setblock ~-86 ~-12 ~-1 air (boss room entrance mechanism)
   - setblock ~-86 ~-12 ~-1 minecraft:redstone_block (boss room entrance mechanism)
+  - execute as @a[tag=game1] run scoreboard players add players2 players 1 **Game dependent**
   
 ## Entrance to puzzle room
 - Repeat - execute if score mazeDone1 mazeDone = players1 players run setblock ~ ~3 ~ minecraft:lever[facing=east] **Game dependent**
