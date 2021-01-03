@@ -33,8 +33,8 @@
   - setblock ~-50 ~-13 ~115 minecraft:netherrack
   - scoreboard players set players1 players 0 **Game dependent**
 - Tick 8:
-  - execute positioned ~-6 ~-12 ~-11 run tp @a[team=teamB1] ~-5 ~ ~18 (tp to mazes) **Game dependent**
-  - execute positioned ~-6 ~-12 ~-11 run tp @a[team=teamA1] ~-5 ~ ~   (tp to mazes) **Game dependent**
+  - tp @a[team=mazeA1] ~-15 ~-12 ~5 (tp to mazes) **Game dependent**
+  - tp @a[team=mazeB1] ~-14 ~-12 ~-13 (tp to mazes) **Game dependent**
   - setblock ~-40 ~-11 ~-5 air (lever)
   - setblock ~-86 ~-12 ~-1 air (boss room entrance mechanism)
   - setblock ~-86 ~-12 ~-1 minecraft:redstone_block (boss room entrance mechanism)
