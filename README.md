@@ -40,6 +40,12 @@
   - setblock ~-86 ~-12 ~-1 minecraft:redstone_block (boss room entrance mechanism)
   - execute as @a[tag=game1] run scoreboard players add players2 players 1 **Game dependent**
   
+## Exit maze
+- execute as @p at @s run tp @a[team=mazeA1] @s
+- gamemode adventure @a[team=mazeA1]
+- execute as @p at @s run tp @a[team=mazeB1] @s
+- gamemode adventure @a[team=mazeB1]
+  
 ## Entrance to puzzle room
 - Repeat - execute if score mazeDone1 mazeDone = players1 players run setblock ~ ~3 ~ minecraft:lever[facing=east] **Game dependent**
   - Chain conditional - scoreboard players set mazeDone1 mazeDone 0 **Game dependent**
