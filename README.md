@@ -1,5 +1,11 @@
 # Minecraft-code
 
+## Lobby locker
+- execute if entity @e[distance=..2, tag=!admin] run setblock ~ ~2 ~2 minecraft:red_nether_brick_wall
+- execute positioned ~ ~ ~1 run fill ~2 ~2 ~2 ~-2 ~2 ~-2 minecraft:prismarine_wall replace minecraft:red_nether_brick_wall
+- execute positioned ~ ~ ~2 as @e[distance=..2, tag=!admin] run tag @s add removeTag
+- execute positioned ~ ~ ~3 as @e[distance=..2, tag=!admin] run tag @s add game1
+
 ## Start game
 - Tick 0: 
   - team add mazeA
@@ -29,18 +35,11 @@
   - setblock ~-86 ~-12 ~-1 minecraft:redstone_block (boss room entrance mechanism)
   
 ## Entrance to puzzle room
-- Repeat - execute if score mazeDone1 mazeDone matches 5 run setblock ~ ~3 ~ minecraft:lever[facing=east] **Game dependent**
+- Repeat - execute if score mazeDone1 mazeDone = players1 players run setblock ~ ~3 ~ minecraft:lever[facing=east] **Game dependent**
   - Chain conditional - scoreboard players set mazeDone1 mazeDone 0 **Game dependent**
   - Chain conditional - /spawnpoint @a[tag=game1] ~-5 ~1 ~3 **Game dependent**
   - Chain conditional - title @a[tag=game1] title {"text":"GO GO GO!!!","color":"gold","italic":true} **Game dependent**
 
-- Repeat - execute as @p[distance=..4,scores={mazeDone=0}] if entity @s run scoreboard players add @s mazeDone 1
-  - Chain conditional - scoreboard players add mazeDone1 mazeDone 1 **Game dependent**
-  
-  
-## Escape Room entry
-- Repeat - execute if score mazeDone1 mazeDone matches 5 run setblock ~ ~3 ~ minecraft:lever[facing=east] **Game dependent**
-  - Chain conditional - scoreboard players set mazeDone1 mazeDone 0   **Game dependent**
 - Repeat - execute as @p[distance=..4,scores={mazeDone=0}] if entity @s run scoreboard players add @s mazeDone 1
   - Chain conditional - scoreboard players add mazeDone1 mazeDone 1 **Game dependent**
   
@@ -58,16 +57,16 @@
 ## Puzzle 2 - Fireplace
 - For the matches (to put in chest): give @p minecraft:flint_and_steel{display:{Name:'{"text":"Match","color":"gold","bold":true}'},CanPlaceOn:["netherrack"]}
 - Repeat - execute positioned ~-2 ~4 ~1 if entity @e[nbt={Item:{id:"minecraft:ice"}},distance=..2] run kill @e[nbt={Item:{id:"minecraft:ice"}}]
-  - Chain conditional - execute positioned ~-2 ~3 ~3 run summon minecraft:item ~ ~ ~ {Item:{id:"minecraft:fishing_rod",Count:5,tag:{display:{Lore:['{"text":"Share with your friends!"}']},Enchantments:[{id:lure,lvl:3}]}}}
-  - title @a[tag=game1] subtitle {"text":"Good job!"} **Game dependent**
+  - Chain conditional - give @a[tag=game1] minecraft:fishing_rod{display:{Lore:['{"text":"Share with your friends!"}']},Enchantments:[{id:lure,lvl:3}]} 1
+  - title @a[tag=game1] subtitle {"text":"Good job! You all have fishing rods now :)"} **Game dependent**
   - title @a[tag=game1] title {"text":"Puzzle 2 complete!", "color":"blue","bold":true,"italic":true} **Game dependent**
   
 ## Puzzle 3 - Tom Holland
 - Repeat - execute if entity @e[type=cat, distance=..20, tag=!adult] run say hi
   - Chain conditional - tag @e[type=cat, tag=!adult,distance=..20] add adult
   - Chain conditional - clone ~-3 ~ ~ ~-3 ~ ~ ~-3 ~2 ~
-  - title @a[tag=game subtitle {"text":"Jiayoussss"} **Game dependent**
-  - title @a title {"text":"Puzzle 3 complete!", "color":"red","bold":true,"italic":true} **Game dependent**
+  - title @a[tag=game1] subtitle {"text":"Jiayoussss! Open the chest for bows and arrows!"} **Game dependent**
+  - title @a[tag=game1] title {"text":"Puzzle 3 complete!", "color":"red","bold":true,"italic":true} **Game dependent**
   
 ## Puzzle 4 - Target Practice
 - title @a[tag=game1] subtitle {"text":"One half of the door has opened!"} **Game dependent**
