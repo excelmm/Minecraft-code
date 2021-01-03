@@ -104,6 +104,7 @@
   
 ## Final room
 - Player detection: execute if entity @a[distance=..5,tag=!admin] run title @a[tag=game1] title {"text":"Lights please!","color":"gold","bold":true,"italic":true} **Game dependent**
+- TP back to home: tp @a[tag=game1] ~145 ~-5 ~1 **Game dependent**
 
 ## Make armor stands invulnerable
 - data merge entity @e[type=minecraft:armor_stand,limit=1,sort=nearest] {Invulnerable:1b,DisabledSlots:2096896}
