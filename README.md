@@ -8,9 +8,9 @@
 
 ## Start game
 - Tick 0: 
-  - team add mazeA
+  - team add mazeA1 **Game dependent**
 - Tick 1: 
-  - team add mazeB
+  - team add mazeB1 **Game dependent**
 - Tick 2:
   - execute positioned ~-6 ~-12 ~-11 as @a[dx=17,dy=8,dz=22,limit=2] run team join mazeA1 @s **Game dependent**
 - Tick 3:
