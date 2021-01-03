@@ -15,9 +15,10 @@
   - clear @a[tag=game1] **Game dependent**
   - scoreboard objectives add players dummy
 - Tick 2:
-  - execute positioned ~-6 ~-12 ~-11 as @a[dx=17,dy=8,dz=22,limit=2] run team join mazeA1 @s **Game dependent**
+  - execute as @a[tag=game1,limit=2] run team join mazeA1 @s @s **Game dependent**
 - Tick 3:
-  - execute positioned ~-6 ~-12 ~-11 as @a[dx=17,dy=8,dz=22, team=!mazeA] run team join mazeB1 @s **Game dependent**
+  - execute as @a[tag=game1,team=!mazeA1] run team join mazeB1 @s @s **Game dependent**
+  - scoreboard objectives add mazeDone dummy
 - Tick 4:
   - gamemode spectator @r[limit=1,team=mazeA1] **Game dependent**
   - gamemode spectator @r[limit=1,team=mazeB1] **Game dependent**
