@@ -96,7 +96,7 @@
 ## Gear equipper before boss fight
 - gamerule mobGriefing false
 - difficulty normal
-- execute positioned ~-18 ~18 ~-1 run summon wither ~ ~ ~
+- execute unless entity @e[type=wither,distance=..100] positioned ~-18 ~18 ~-1 run summon wither ~ ~ ~
   - Chain tag @e[distance=..100,type=wither] add monster
 - give @a[tag=!admin,distance=..6] bow{Enchantments:[{id:power,lvl:4}]}
   - Chain give @a[tag=!admin,distance=..6] arrow 128
