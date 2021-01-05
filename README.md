@@ -14,14 +14,16 @@
   - team leave @a[tag=game1] **Game dependent**
   - clear @a[tag=game1] **Game dependent**
   - scoreboard objectives add players dummy
+  - team empty mazeA1 **Game dependent**
+  - team empty mazeB1 **Game dependent**
 - Tick 2:
   - execute as @a[tag=game1,limit=2] run team join mazeA1 @s @s **Game dependent**
 - Tick 3:
   - execute as @a[tag=game1,team=!mazeA1] run team join mazeB1 @s @s **Game dependent**
   - scoreboard objectives add mazeDone dummy
 - Tick 4:
-  - gamemode spectator @r[limit=1,team=mazeA1] **Game dependent**
-  - gamemode spectator @r[limit=1,team=mazeB1] **Game dependent**
+  - gamemode spectator @r[team=mazeA1] **Game dependent**
+  - gamemode spectator @r[team=mazeB1] **Game dependent**
 - Tick 5:
   - title @a[tag=game1,gamemode=spectator] title {"text":"Help your friends!", "italic":true,"color":"gold"} **Game dependent**
   - title @a[tag=game1,gamemode=!spectator] title {"text":"Finish the maze!", "italic":true,"color":"gold"} **Game dependent**
@@ -39,6 +41,9 @@
   - setblock ~-86 ~-12 ~-1 air (boss room entrance mechanism)
   - setblock ~-86 ~-12 ~-1 minecraft:redstone_block (boss room entrance mechanism)
   - execute as @a[tag=game1] run scoreboard players add players2 players 1 **Game dependent**
+  - summon cat ~-80 ~-12 ~-20 {CustomName:'{"text":"Tom"}',Invulnerable:1b,Tags:["adult"]}
+  - summon cat ~-81 ~-12 ~-20 {CustomName:'{"text":"Holland"}',Invulnerable:1b,Tags:["adult"]}
+  - execute as @a[tag=game1] run scoreboard players add players1 players 1
   
 ## Exit maze
 - execute as @p at @s run tp @a[team=mazeA1] @s
