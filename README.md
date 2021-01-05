@@ -17,7 +17,7 @@
   - team empty mazeA1 **Game dependent**
   - team empty mazeB1 **Game dependent**
 - Tick 2:
-  - execute as @a[tag=game1,limit=3] run team join mazeA1 @s @s **Game dependent**
+  - execute as @a[tag=game1,limit=3] run team join mazeA1 @s **Game dependent**
 - Tick 3:
   - execute as @a[tag=game1,team=!mazeA1] run team join mazeB1 @s @s **Game dependent**
   - scoreboard objectives add mazeDone dummy
