@@ -21,19 +21,20 @@
 - Tick 3:
   - execute as @a[tag=game1,team=!mazeA1] run team join mazeB1 @s **Game dependent**
   - scoreboard objectives add mazeDone dummy
+  - scoreboard players set players1 players 0 **Game dependent**
 - Tick 4:
+  - scoreboard players set mazeDone1 mazeDone 0 **Game dependent**
+  - scoreboard players set @a[tag=game1] mazeDone 0 **Game dependent**
   - gamemode spectator @r[team=mazeA1] **Game dependent**
   - gamemode spectator @r[team=mazeB1] **Game dependent**
 - Tick 5:
   - title @a[tag=game1,gamemode=spectator] title {"text":"Help your friends!", "italic":true,"color":"gold"} **Game dependent**
   - title @a[tag=game1,gamemode=!spectator] title {"text":"Finish the maze!", "italic":true,"color":"gold"} **Game dependent**
 - Tick 7:
-  - scoreboard players set mazeDone1 mazeDone 0 **Game dependent**
-  - scoreboard players set @a[tag=game1] mazeDone 0 **Game dependent**
   - execute as @a[tag=game1] at @s run spawnpoint @s ~ ~ ~ **Game dependent**
   - clone ~-10 ~-16 ~-6 ~5 ~-16 ~-6 ~-10 ~-12 ~-6 
   - setblock ~-50 ~-13 ~115 minecraft:netherrack
-  - scoreboard players set players1 players 0 **Game dependent**
+  - execute as @a[tag=game1] run scoreboard players add players1 players 1
 - Tick 8:
   - tp @a[team=mazeA1] ~-15 ~-12 ~5 (tp to mazes) **Game dependent**
   - tp @a[team=mazeB1] ~-14 ~-12 ~-13 (tp to mazes) **Game dependent**
@@ -43,7 +44,6 @@
   - execute as @a[tag=game1] run scoreboard players add players2 players 1 **Game dependent**
   - summon cat ~-80 ~-12 ~-20 {CustomName:'{"text":"Tom"}',Invulnerable:1b,Tags:["adult"]}
   - summon cat ~-81 ~-12 ~-20 {CustomName:'{"text":"Holland"}',Invulnerable:1b,Tags:["adult"]}
-  - execute as @a[tag=game1] run scoreboard players add players1 players 1
   
 ## Exit maze
 - execute as @p at @s run tp @a[team=mazeA1] @s
