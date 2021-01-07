@@ -6,8 +6,7 @@
 ## Lobby locker
 - execute if entity @e[distance=..2, tag=!admin] run setblock ~ ~2 ~2 minecraft:red_nether_brick_wall
 - execute positioned ~ ~ ~1 run fill ~2 ~2 ~2 ~-2 ~2 ~-2 minecraft:prismarine_wall replace minecraft:red_nether_brick_wall
-- execute positioned ~ ~ ~2 as @e[distance=..2, tag=!admin] run tag @s add removeTag
-- execute positioned ~ ~ ~3 as @e[distance=..2, tag=!admin] run tag @s add game1 **Game dependent**
+- execute positioned ~ ~ ~2 as @e[distance=..2, tag=!admin] run tag @s add game1 **Game dependent**
 
 ## Start game
 - Tick 0: 
@@ -38,7 +37,7 @@
   - execute as @a[tag=game1] at @s run spawnpoint @s ~ ~ ~ **Game dependent**
   - clone ~-10 ~-16 ~-6 ~5 ~-16 ~-6 ~-10 ~-12 ~-6 
   - setblock ~-50 ~-13 ~115 minecraft:netherrack
-  - execute as @a[tag=game1] run scoreboard players add players1 players 1
+  - execute as @a[tag=game1] run scoreboard players add players1 players 1 **Game dependent**
   - scoreboard players set finished1 finished 0 **Game dependent**
   - scoreboard players set @a[tag=game1] finished 0 **Game dependent**
 - Tick 8:
@@ -47,7 +46,6 @@
   - setblock ~-40 ~-11 ~-5 air (lever)
   - setblock ~-86 ~-12 ~-1 air (boss room entrance mechanism)
   - setblock ~-86 ~-12 ~-1 minecraft:redstone_block (boss room entrance mechanism)
-  - execute as @a[tag=game1] run scoreboard players add players2 players 1 **Game dependent**
   - summon cat ~-80 ~-12 ~-20 {CustomName:'{"text":"Tom"}',Invulnerable:1b,Tags:["adult"]}
   - summon cat ~-81 ~-12 ~-20 {CustomName:'{"text":"Holland"}',Invulnerable:1b,Tags:["adult"]}
   
@@ -74,8 +72,8 @@
 - give @p ice{display:{Name:'{"text":"Fuel","color":"gray","bold":true,"italic":true}'}}
 - give @p diamond{display:{Name:'{"text":"Sacrificial token","color":"gold","bold":true,"italic":true}',Lore:['{"text":"Keep this for the boss fight!"}']}} 26 
 - Repeat - execute if block ~ ~-6 ~ minecraft:chest{Items:[]} run setblock ~ ~-6 ~ air
-  - Chain conditional - title @a subtitle {"text":"Keep going!"}
-  - Chain conditional - title @a title {"text":"Puzzle 1 complete!", "color":"green", "bold":true,"italic":true}
+  - Chain conditional - title @a[tag=game1] subtitle {"text":"Keep going!"} **Game dependent**
+  - Chain conditional - title @a[tag=game1] title {"text":"Puzzle 1 complete!", "color":"green", "bold":true,"italic":true} **Game dependent**
 
 ## Puzzle 2 - Fireplace
 - For the matches (to put in chest): give @p minecraft:flint_and_steel{display:{Name:'{"text":"Match","color":"gold","bold":true}'},CanPlaceOn:["netherrack"]}
