@@ -78,7 +78,7 @@
 ## Puzzle 2 - Fireplace
 - For the matches (to put in chest): give @p minecraft:flint_and_steel{display:{Name:'{"text":"Match","color":"gold","bold":true}'},CanPlaceOn:["netherrack"]}
 - Repeat - execute positioned ~-2 ~4 ~1 if entity @e[nbt={Item:{id:"minecraft:ice"}},distance=..2] run kill @e[nbt={Item:{id:"minecraft:ice"}}]
-  - Chain conditional - give @a[tag=game1] minecraft:fishing_rod{display:{Lore:['{"text":"Share with your friends!"}']},Enchantments:[{id:lure,lvl:3}]} 1
+  - Chain conditional - give @a[tag=game1] minecraft:fishing_rod{display:{Lore:['{"text":"Share with your friends!"}']},Enchantments:[{id:lure,lvl:3}]} 1 **Game dependent**
   - title @a[tag=game1] subtitle {"text":"Good job! You all have fishing rods now :)"} **Game dependent**
   - title @a[tag=game1] title {"text":"Puzzle 2 complete!", "color":"blue","bold":true,"italic":true} **Game dependent**
   
@@ -119,6 +119,9 @@
   - Chain conditional - title @a[tag=game1] subtitle "Congratulations! You're almost done" **Game dependent**
   - Chain conditional - title @a[tag=game1] title {"text":"COVID-19 is dead!!","color":"dark_red","bold":true,"italic":true} **Game dependent**
   - Repeat - bossbar set minecraft:bossbar1 visible true **Game dependent**
+  
+## After COVID-19 slain
+- clear @a[tag=game1] **Game dependent**
   
 ## Final room
 - Player detection: Repeat - execute as @a[tag=game1,tag=!admin,distance=..7,scores={finished=0}] run scoreboard players set @s finished 1
