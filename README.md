@@ -1,5 +1,8 @@
 # Minecraft-code
 
+## Clear all tags (entrance to lobby room)
+- execute positioned ~ ~2 ~ as @p[tag=!admin,distance=..1] run tag @s add removeTag **Game dependent**
+
 ## Lobby locker
 - execute if entity @e[distance=..2, tag=!admin] run setblock ~ ~2 ~2 minecraft:red_nether_brick_wall
 - execute positioned ~ ~ ~1 run fill ~2 ~2 ~2 ~-2 ~2 ~-2 minecraft:prismarine_wall replace minecraft:red_nether_brick_wall
@@ -117,6 +120,11 @@
 ## Final room
 - Player detection: execute if entity @a[distance=..5,tag=!admin] run title @a[tag=game1] title {"text":"Lights please!","color":"gold","bold":true,"italic":true} **Game dependent**
 - TP back to home: tp @a[tag=game1] ~145 ~-5 ~1 **Game dependent**
+
+## Maze TPs
+- tp @p ~-20 ~1 ~1
+- tp @p ~-29 ~1 ~11
+- 
 
 ## Make armor stands invulnerable
 - data merge entity @e[type=minecraft:armor_stand,limit=1,sort=nearest] {Invulnerable:1b,DisabledSlots:2096896}
