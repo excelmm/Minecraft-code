@@ -24,6 +24,7 @@
 - Tick 3:
   - execute as @a[tag=game1,team=!mazeA1] run team join mazeB1 @s **Game dependent**
   - scoreboard objectives add mazeDone dummy
+  - scoreboard objectives add finished dummy
   - scoreboard players set players1 players 0 **Game dependent**
 - Tick 4:
   - scoreboard players set mazeDone1 mazeDone 0 **Game dependent**
@@ -38,6 +39,8 @@
   - clone ~-10 ~-16 ~-6 ~5 ~-16 ~-6 ~-10 ~-12 ~-6 
   - setblock ~-50 ~-13 ~115 minecraft:netherrack
   - execute as @a[tag=game1] run scoreboard players add players1 players 1
+  - scoreboard players set finished1 finished 0 **Game dependent**
+  - scoreboard players set @a[tag=game1] finished 0 **Game dependent**
 - Tick 8:
   - tp @a[team=mazeA1] ~-15 ~-12 ~5 (tp to mazes) **Game dependent**
   - tp @a[team=mazeB1] ~-14 ~-12 ~-13 (tp to mazes) **Game dependent**
@@ -49,10 +52,10 @@
   - summon cat ~-81 ~-12 ~-20 {CustomName:'{"text":"Holland"}',Invulnerable:1b,Tags:["adult"]}
   
 ## Exit maze
-- execute as @p at @s run tp @a[team=mazeA1] @s
-- gamemode adventure @a[team=mazeA1]
-- execute as @p at @s run tp @a[team=mazeB1] @s
-- gamemode adventure @a[team=mazeB1]
+- execute as @p at @s run tp @a[team=mazeA1] @s **Game dependent**
+- gamemode adventure @a[team=mazeA1] **Game dependent**
+- execute as @p at @s run tp @a[team=mazeB1] @s **Game dependent**
+- gamemode adventure @a[team=mazeB1] **Game dependent**
   
 ## Entrance to puzzle room
 - Repeat - execute if score mazeDone1 mazeDone = players1 players run setblock ~ ~3 ~ minecraft:lever[facing=east] **Game dependent**
@@ -99,8 +102,7 @@
 ## Gear equipper before boss fight
 - gamerule mobGriefing false
 - difficulty normal
-- execute unless entity @e[type=wither,distance=..50] positioned ~-18 ~18 ~-1 run summon wither ~ ~ ~
-  - Chain tag @e[distance=..50,type=wither] add monster
+- execute unless entity @e[tag=monster,distance=..50] positioned ~-18 ~18 ~-1 run summon minecraft:zombified_piglin ~ ~1 ~ {HandItems:[{Count:1,id:netherite_sword},{}],ArmorItems:[{Count:1,id:diamond_boots,tag:{Enchantments:[{id:protection,lvl:4}]}},{Count:1,id:diamond_leggings,tag:{Enchantments:[{id:protection,lvl:4}]}},{Count:1,id:diamond_chestplate,tag:{Enchantments:[{id:protection,lvl:4}]}},{Count:1,id:diamond_helmet,tag:{Enchantments:[{id:protection,lvl:4}]}}],CustomName:"\"Covid-19\"",Tags:["game1","monster"],Attributes:[{Name:"generic.maxHealth",Base:100}],Health:100}
 - give @a[tag=!admin,distance=..6] bow{Enchantments:[{id:power,lvl:4}]}
   - Chain give @a[tag=!admin,distance=..6] arrow 128
   - Chain spawnpoint @a[tag=game1] ~7 ~5 ~-1 **Game dependent**
@@ -111,15 +113,21 @@
   - Chain replaceitem entity @a[tag=!admin,distance=..6] armor.legs minecraft:iron_leggings
   - Chain effect give @a[tag=!admin,distance=..7] minecraft:regeneration 10000 5
   
-## Wither Slain
+## COVID-19 Slain
 - Repeat - execute if entity @e[distance=..50,tag=monster] run setblock ~ ~-1 ~ redstone_block
+  - Repeat - bossbar set minecraft:bossbar1 visible false **Game dependent**
+  - Chain conditional - bossbar set minecraft:bossbar1 players @a[tag=game1] **Game dependent**
 - Repeat - execute unless entity @e[distance=..50,tag=monster] run setblock ~ ~1 ~ air
-  - Chain conditional - title @a[tag=game1] subtitle "Congratulations! You're almost done"
-  - Chain conditional - title @a[tag=game1] title {"text":"The wither is dead","color":"dark_red","bold":true,"italic":true}
+  - Chain conditional - title @a[tag=game1] subtitle "Congratulations! You're almost done" **Game dependent**
+  - Chain conditional - title @a[tag=game1] title {"text":"COVID-19 is dead!!","color":"dark_red","bold":true,"italic":true} **Game dependent**
+  - Repeat - bossbar set minecraft:bossbar1 visible true **Game dependent**
   
 ## Final room
-- Player detection: execute if entity @a[distance=..5,tag=!admin] run title @a[tag=game1] title {"text":"Lights please!","color":"gold","bold":true,"italic":true} **Game dependent**
-- TP back to home: tp @a[tag=game1] ~145 ~-5 ~1 **Game dependent**
+- Player detection: Repeat - execute as @a[tag=game1,tag=!admin,distance=..7,scores={finished=0}] run scoreboard players set @s finished 1
+  - Chain conditional - scoreboard players add finished1 finished 1 **Game dependent**
+- Repeat - execute unless score finished1 finished matches 0 if score finished1 finished = players1 players run fill ~-2 ~-7 ~-2 ~2 ~-7 ~4 air **Game dependent**
+  - Chain conditional - title @a[tag=game1] title {"text":"WATCH OUT!!!","color":"dark_red"} **Game dependent**
+  - Chain conditional - give @a[tag=game1] torch{CanPlaceOn:["dirt"]} 128 **Game dependent**
 
 ## Maze TPs
 - tp @p ~-20 ~1 ~1
