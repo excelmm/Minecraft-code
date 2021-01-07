@@ -99,8 +99,8 @@
 ## Gear equipper before boss fight
 - gamerule mobGriefing false
 - difficulty normal
-- execute unless entity @e[type=wither,distance=..100] positioned ~-18 ~18 ~-1 run summon wither ~ ~ ~
-  - Chain tag @e[distance=..100,type=wither] add monster
+- execute unless entity @e[type=wither,distance=..50] positioned ~-18 ~18 ~-1 run summon wither ~ ~ ~
+  - Chain tag @e[distance=..50,type=wither] add monster
 - give @a[tag=!admin,distance=..6] bow{Enchantments:[{id:power,lvl:4}]}
   - Chain give @a[tag=!admin,distance=..6] arrow 128
   - Chain spawnpoint @a[tag=game1] ~7 ~5 ~-1 **Game dependent**
@@ -112,8 +112,8 @@
   - Chain effect give @a[tag=!admin,distance=..7] minecraft:regeneration 10000 5
   
 ## Wither Slain
-- Repeat - execute if entity @e[distance=..100,tag=monster] run setblock ~ ~-1 ~ redstone_block
-- Repeat - execute unless entity @e[distance=..100,tag=monster] run setblock ~ ~1 ~ air
+- Repeat - execute if entity @e[distance=..50,tag=monster] run setblock ~ ~-1 ~ redstone_block
+- Repeat - execute unless entity @e[distance=..50,tag=monster] run setblock ~ ~1 ~ air
   - Chain conditional - title @a[tag=game1] subtitle "Congratulations! You're almost done"
   - Chain conditional - title @a[tag=game1] title {"text":"The wither is dead","color":"dark_red","bold":true,"italic":true}
   
@@ -124,7 +124,9 @@
 ## Maze TPs
 - tp @p ~-20 ~1 ~1
 - tp @p ~-29 ~1 ~11
-- 
+- title @p subtitle {"text":"You have escaped!!!","bold":true}
+  - Chain execute positioned ~-1 ~ ~ run title @p title {"text":"Congratulations!","color":"gold","bold":true,"italic":true}
+  - execute positioned ~-2 ~ ~ run tp @p ~119 ~22 ~44
 
 ## Make armor stands invulnerable
 - data merge entity @e[type=minecraft:armor_stand,limit=1,sort=nearest] {Invulnerable:1b,DisabledSlots:2096896}
